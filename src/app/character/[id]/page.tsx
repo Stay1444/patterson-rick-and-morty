@@ -9,8 +9,8 @@ export default async function Page({ params }: { params: { id: number } }) {
   }
 
   return (
-    <div className="flex flex-row justify-center align-middle items-center min-h-full">
-      <FullCharacter character={character} />
+    <div className="flex flex-row justify-center align-middle">
+      <FullCharacter showCompare character={character} />
     </div>
   );
 }
