@@ -15,7 +15,7 @@ export async function getCharacter(id: number): Promise<Character | undefined> {
 export async function getCharacters(
   page: number,
 ): Promise<PagedCharacters | undefined> {
-  const response = await fetch(`${BASE_URL}/character`);
+  const response = await fetch(`${BASE_URL}/character?page=${page}`);
 
   if (!response.ok) {
     return undefined;

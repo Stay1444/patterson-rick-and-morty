@@ -4,6 +4,7 @@
 
 body {
   background: #f4f3f2;
+  height: 100vh;
 }
 
 @layer utilities {
