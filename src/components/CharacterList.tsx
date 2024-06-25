@@ -3,7 +3,7 @@ import { Character } from "@/api/Models";
 import CharacterCard from "./CharacterCard";
 import { useMemo, useState } from "react";
 
-export function CharacterList({ characters }: { characters: [Character] }) {
+export function CharacterList({ characters }: { characters: Character[] }) {
   const [filter, setFilter] = useState("");
 
   const displayCharacters = useMemo(() => {
@@ -40,7 +40,7 @@ function FilterControls({
 }) {
   return (
     <div className="bg-blue-300 rounded p-3 flex flex-row gap-2">
-      <h1>Characters</h1>
+      <h1>Personajes</h1>
       <input
         className="ml-auto rounded"
         value={filter}

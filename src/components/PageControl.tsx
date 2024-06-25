@@ -2,7 +2,6 @@
 
 import { createRangeArray } from "@/utils/Arrays";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function PageControl({
   current,

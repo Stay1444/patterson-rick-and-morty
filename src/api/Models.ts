@@ -5,7 +5,7 @@ export type PagedCharacters = {
     next: string;
     prev: string;
   };
-  results: [Character];
+  results: Character[];
 };
 
 export type Character = {
@@ -24,7 +24,17 @@ export type Character = {
     url: string;
   };
   image: string;
-  episode: [string];
+  episode: string[];
   url: string;
   crated: string;
+};
+
+export type Episode = {
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
+  characters: string[];
+  url: string;
+  created: string;
 };

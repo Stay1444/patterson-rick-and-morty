@@ -1,7 +1,26 @@
-import { Character } from "@/api/Models";
+"use client";
+
+import { Character, Episode } from "@/api/Models";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function FullCharacter({ character }: { character: Character }) {
+  const [episodes, setEpisodes] = useState<Episode[]>([]);
+
+  useEffect(() => {
+    character.episode.forEach((url) => {
+      fetch(url).then((response) => {
+        if (response.ok) {
+          response.json().then((data) => {
+            setEpisodes((episodes) =>
+              [...episodes, data].sort((a, b) => a.id - b.id),
+            );
+          });
+        }
+      });
+    });
+  }, [setEpisodes, character]);
+
   return (
     <div className="border p-4 rounded flex flex-row gap-4 border-gray-400 bg-gray-100 shadow-md">
       <div>
@@ -18,10 +37,10 @@ export default function FullCharacter({ character }: { character: Character }) {
         <p className="text-neutral-500">
           {character.gender} {character.type}
         </p>
-        <Category name="Location" value={character.location.name} />
-        <Category name="Origin" value={character.origin.name} />
-        {character.episode.length > 0 && (
-          <Category name="Debut" value={character.episode[0]} />
+        <Category name="Localización" value={character.location.name} />
+        <Category name="Planeta de Origen" value={character.origin.name} />
+        {episodes.length > 0 && (
+          <Category name="Episodio de Debut" value={episodes[0].name} />
         )}
       </div>
     </div>
