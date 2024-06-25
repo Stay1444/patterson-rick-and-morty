@@ -3,6 +3,7 @@
 import { getCharacter } from "@/api/Api";
 import { Character } from "@/api/Models";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -35,10 +36,8 @@ export default function CharacterCard(props: CharacterCardProps) {
   }
 
   return (
-    <div
-      onClick={() => {
-        router.replace(`/character/${character.id}`);
-      }}
+    <Link
+      href={`/character/${character.id}`}
       className="flex flex-col gap-2 w-36 items-center p-2 border-gray-400 bg-gray-100 shadow-md border rounded-lg cursor-pointer hover:scale-105 duration-100"
     >
       <Image
@@ -52,6 +51,6 @@ export default function CharacterCard(props: CharacterCardProps) {
       <p className="text-center text-xs">
         {character.gender}, {character.status}
       </p>
-    </div>
+    </Link>
   );
 }

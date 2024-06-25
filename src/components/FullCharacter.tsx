@@ -1,6 +1,7 @@
 "use client";
 
 import { Character, Episode } from "@/api/Models";
+import { IconGitCompare } from "@tabler/icons-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -40,8 +41,14 @@ export default function FullCharacter({ character }: { character: Character }) {
         <Category name="Localización" value={character.location.name} />
         <Category name="Planeta de Origen" value={character.origin.name} />
         {episodes.length > 0 && (
-          <Category name="Episodio de Debut" value={episodes[0].name} />
+          <Category
+            name="Episodio de Debut"
+            value={`${episodes[0].name} (${episodes[0].air_date})`}
+          />
         )}
+      </div>
+      <div>
+        <IconGitCompare className="text-blue-400 hover:text-blue-600 cursor-pointer duration-100" />
       </div>
     </div>
   );

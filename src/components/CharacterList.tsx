@@ -14,19 +14,17 @@ export function CharacterList({ characters }: { characters: Character[] }) {
       if (x.gender.toLowerCase().includes(filter.toLowerCase())) return true;
       if (x.location.name.toLowerCase().includes(filter.toLowerCase()))
         return true;
+      if (x.species.toLowerCase().includes(filter.toLowerCase())) return true;
 
       return false;
     });
   }, [filter, characters]);
 
   return (
-    <div className="p-5">
-      <FilterControls filter={filter} setFilter={setFilter} />
-      <div className="flex gap-2 p-5 flex-wrap justify-center">
-        {displayCharacters.map((x) => (
-          <CharacterCard key={x.id} character={x} />
-        ))}
-      </div>
+    <div className="flex gap-2 flex-wrap justify-center">
+      {displayCharacters.map((x) => (
+        <CharacterCard key={x.id} character={x} />
+      ))}
     </div>
   );
 }

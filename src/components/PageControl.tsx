@@ -34,7 +34,9 @@ function PageButton({ number, active }: { number: number; active: boolean }) {
         active ? "bg-blue-300" : "cursor-pointer hover:bg-blue-400"
       } min-h-10 min-w-10 flex items-center justify-center rounded-full`}
     >
-      <label className={`${!active ? "cursor-pointer" : ""}`}>{number}</label>
+      <label className={`${!active ? "cursor-pointer text-white" : ""}`}>
+        {number}
+      </label>
     </Link>
   );
 }
