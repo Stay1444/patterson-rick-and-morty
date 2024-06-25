@@ -24,6 +24,10 @@ export async function getCharacters(
   return await getJson(`character?page=${page}`);
 }
 
+export async function getAllCharacters(): Promise<PagedCharacters | undefined> {
+  return await getJson("character");
+}
+
 export async function getEpisode(id: number): Promise<Episode | undefined> {
   return await getJson(`episode/${id}`);
 }

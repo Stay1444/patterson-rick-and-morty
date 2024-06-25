@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import SearchBox from "@/components/SearchBox";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
           <Link href={"/characters/1"} className="text-2xl">
             Rick and Morty
           </Link>
+          <SearchBox className="ml-auto" />
         </div>
         <div>{children}</div>
       </body>
