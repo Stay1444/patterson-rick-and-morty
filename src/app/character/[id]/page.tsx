@@ -5,7 +5,7 @@ export default async function Page({ params }: { params: { id: number } }) {
   const character = await getCharacter(params.id);
 
   if (character == undefined) {
-    throw new Error("Unknown character");
+    return <div>Character not found</div>;
   }
 
   return (

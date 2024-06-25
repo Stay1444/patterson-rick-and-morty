@@ -9,7 +9,9 @@ async function getJson<T>(url: string): Promise<T | undefined> {
     return undefined;
   }
 
-  return (await response.json()) as T;
+  const json = await response.json();
+
+  return json as T;
 }
 
 export async function getCharacter(id: number): Promise<Character | undefined> {

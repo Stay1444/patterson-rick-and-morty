@@ -8,7 +8,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
   const characters = await getCharacters(page);
 
   if (characters == undefined) {
-    throw new Error("TODO: Error handling");
+    return <div>Error getting list of characters</div>;
   }
 
   return (

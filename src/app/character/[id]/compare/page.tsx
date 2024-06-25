@@ -7,7 +7,7 @@ export default async function Page({ params }: { params: { id: number } }) {
   const characters = await getCharacters(page);
 
   if (characters == undefined) {
-    throw new Error("TODO: Error handling");
+    return <div>Character not found</div>;
   }
 
   return (

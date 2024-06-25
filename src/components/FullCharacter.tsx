@@ -38,6 +38,7 @@ export default async function FullCharacter({
           <p className="text-neutral-500">
             {character.gender} {character.type}
           </p>
+          <Category name="Estado" value={character.status} />
           <Category name="Localización" value={character.location.name} />
           <Category name="Planeta de Origen" value={character.origin.name} />
           {episodes.length > 0 && (
