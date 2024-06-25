@@ -6,22 +6,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Card from "./Card";
 
 type PropsWithId = {
   id: number;
   character?: never;
+  sendTo?: string;
 };
 
 type PropsWithCharacter = {
   id?: never;
   character: Character;
+  sendTo?: string;
 };
 
 type CharacterCardProps = PropsWithId | PropsWithCharacter;
 
 export default function CharacterCard(props: CharacterCardProps) {
   const [character, setCharacter] = useState<Character | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
     if ("id" in props) {
@@ -36,10 +38,22 @@ export default function CharacterCard(props: CharacterCardProps) {
   }
 
   return (
-    <Link
-      href={`/character/${character.id}`}
-      className="flex flex-col gap-2 w-36 items-center p-2 border-gray-400 bg-gray-100 shadow-md border rounded-lg cursor-pointer hover:scale-105 duration-100"
+    <Card
+      href={
+        props.sendTo
+          ? `${props.sendTo}/${character.id}`
+          : `/character/${character.id}`
+      }
+      className="flex flex-col gap-2 w-36 items-center hover:scale-105 duration-100"
     >
+      <InnerContent character={character} />
+    </Card>
+  );
+}
+
+function InnerContent({ character }: { character: Character }) {
+  return (
+    <>
       <Image
         src={character.image}
         alt={character.name}
@@ -51,6 +65,6 @@ export default function CharacterCard(props: CharacterCardProps) {
       <p className="text-center text-xs">
         {character.gender}, {character.status}
       </p>
-    </Link>
+    </>
   );
 }

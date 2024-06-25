@@ -2,8 +2,15 @@
 import { Character } from "@/api/Models";
 import CharacterCard from "./CharacterCard";
 import { useMemo, useState } from "react";
+import Link from "next/link";
 
-export function CharacterList({ characters }: { characters: Character[] }) {
+export function CharacterList({
+  characters,
+  sendTo,
+}: {
+  characters: Character[];
+  sendTo?: string;
+}) {
   const [filter, setFilter] = useState("");
 
   const displayCharacters = useMemo(() => {
@@ -22,9 +29,9 @@ export function CharacterList({ characters }: { characters: Character[] }) {
 
   return (
     <div className="flex gap-2 flex-wrap justify-center">
-      {displayCharacters.map((x) => (
-        <CharacterCard key={x.id} character={x} />
-      ))}
+      {displayCharacters.map((x) => {
+        return <CharacterCard key={x.id} character={x} sendTo={sendTo} />;
+      })}
     </div>
   );
 }

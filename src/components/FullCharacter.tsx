@@ -1,30 +1,28 @@
-"use client";
-
 import { Character, Episode } from "@/api/Models";
 import { IconGitCompare } from "@tabler/icons-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import Card from "./Card";
 
-export default function FullCharacter({
+export default async function FullCharacter({
   character,
   showCompare,
 }: {
   character: Character;
   showCompare: boolean;
 }) {
-  const [episodes, setEpisodes] = useState<Episode[]>([]);
+  let episodes = [];
 
-  useEffect(() => {
-    let requests = character.episode.map((x) => fetch(x));
-    Promise.all(requests)
-      .then((responses) => responses.map((x) => x.json()))
-      .then((responses) => {
-        Promise.all(responses).then((episodes) => setEpisodes(episodes));
-      });
-  }, [setEpisodes, character]);
+  for (const link of character.episode) {
+    const response = await fetch(link);
+    if (!response.ok) {
+      continue;
+    }
+    episodes.push((await response.json()) as Episode);
+  }
 
   return (
-    <div className="border p-4 rounded  border-gray-400 bg-gray-100 shadow-md">
+    <Card className="p-4">
       <div className="flex flex-row gap-4 justify-around">
         <div>
           <Image
@@ -51,7 +49,9 @@ export default function FullCharacter({
         </div>
         <div>
           {showCompare && (
-            <IconGitCompare className="text-blue-400 hover:text-blue-600 cursor-pointer duration-100" />
+            <Link href={`/character/${character.id}/compare`}>
+              <IconGitCompare className="text-blue-400 hover:text-blue-600 cursor-pointer duration-100" />
+            </Link>
           )}
         </div>
       </div>
@@ -67,7 +67,7 @@ export default function FullCharacter({
           );
         })}
       </div>
-    </div>
+    </Card>
   );
 }
 
