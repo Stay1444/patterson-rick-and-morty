@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import style from "@/styles/layout.module.css";
 import Link from "next/link";
 import SearchBox from "@/components/SearchBox";
 
@@ -23,7 +24,7 @@ export default function RootLayout({
           <Link href={"/characters/1"} className="text-2xl">
             Rick and Morty
           </Link>
-          <SearchBox className="ml-auto" />
+          <SearchBox className={`ml-auto ${style.search}`} />
         </div>
         <div>{children}</div>
       </body>

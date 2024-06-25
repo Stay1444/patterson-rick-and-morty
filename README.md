@@ -71,4 +71,5 @@ The key components are
 ## Possible Improvements
 
 - Better Styling
+- Show search bar on mobile
 - More detailed character comparison page
