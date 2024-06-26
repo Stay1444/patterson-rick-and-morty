@@ -24,8 +24,26 @@ export async function getCharacters(
   return await getJson(`character?page=${page}`);
 }
 
-export async function getAllCharacters(): Promise<PagedCharacters | undefined> {
-  return await getJson("character");
+export async function getAllCharacters(): Promise<Character[] | undefined> {
+  let characters: Character[] = [];
+
+  let p = 1;
+  while (true) {
+    const page = await getCharacters(p);
+    if (page == undefined) {
+      break;
+    }
+
+    characters.push(...page.results);
+
+    if (p >= page.info.pages) {
+      break;
+    }
+
+    p++;
+  }
+
+  return characters;
 }
 
 export async function getEpisode(id: number): Promise<Episode | undefined> {

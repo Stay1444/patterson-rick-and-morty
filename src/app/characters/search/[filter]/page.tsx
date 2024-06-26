@@ -10,7 +10,7 @@ export default async function Page({ params }: { params: { filter: string } }) {
     return <div>Error getting list of characters</div>;
   }
 
-  const displayCharacters = characters.results.filter((x) => {
+  const displayCharacters = characters.filter((x) => {
     if (filter.length == 0) return true;
 
     if (x.name.toLowerCase().includes(filter.toLowerCase())) return true;
