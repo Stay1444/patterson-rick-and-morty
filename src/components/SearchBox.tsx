@@ -24,7 +24,6 @@ export default function SearchBox({ className }: { className?: string }) {
           } else {
             router.push(`/characters/search/${filter}`);
           }
-          router.refresh();
         }}
       >
         Buscar
