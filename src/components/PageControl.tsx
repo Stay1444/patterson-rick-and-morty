@@ -2,6 +2,7 @@
 
 import { createRangeArray } from "@/utils/Arrays";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function PageControl({
   current,
@@ -27,9 +28,17 @@ export default function PageControl({
 }
 
 function PageButton({ number, active }: { number: number; active: boolean }) {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
   return (
-    <Link
-      href={`/characters/${number}`}
+    <div
+      onClick={() => {
+        const current = new URLSearchParams(Array.from(searchParams.entries()));
+
+        current.set("page", number.toString());
+        router.push(`${pathname}?${current.toString()}`);
+      }}
       className={`${
         active ? "bg-blue-300" : "cursor-pointer hover:bg-blue-400"
       } min-h-10 min-w-10 flex items-center justify-center rounded-full`}
@@ -37,6 +46,6 @@ function PageButton({ number, active }: { number: number; active: boolean }) {
       <label className={`${!active ? "cursor-pointer text-white" : ""}`}>
         {number}
       </label>
-    </Link>
+    </div>
   );
 }

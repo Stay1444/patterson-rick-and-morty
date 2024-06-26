@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${inter.className}`}>
         <div className="flex flex-row items-center gap-4 p-4 bg-blue-300 shadow-2xl w-full h-14">
-          <Link href={"/characters/1"} className="text-2xl">
+          <Link href={"/characters"} className="text-2xl">
             Rick and Morty
           </Link>
           <SearchBox className={`ml-auto ${style.search}`} />
